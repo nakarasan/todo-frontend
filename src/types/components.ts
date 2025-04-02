@@ -3,6 +3,7 @@ export interface IButtonProps {
   onClick?: (e: any) => void;
   type?: any;
   disabled?: boolean;
+  variant?: 'primary' | 'secondary';
 }
 
 export interface InputProps {
