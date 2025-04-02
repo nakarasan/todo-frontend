@@ -1,11 +1,13 @@
 import React from 'react';
 import Task from 'pages/task';
+import { Provider } from 'react-redux';
+import store from 'store/store';
 
-function App() {
+const App:React.FC =() => {
   return (
-    <div>
+    <Provider store={store}>
       <Task />
-    </div>
+    </Provider>
   );
 }
 
