@@ -23,10 +23,12 @@ export const TextArea: React.FC<ITextareaProps> = ({
   }, [touches, errors, name]);
 
   return (
-    <div className='flex flex-col justify-start items-start gap-1'>
+    <div className='flex flex-col justify-start items-start gap-1 relative'>
       <label
         htmlFor={name}
-        className={`text-[11px] font-bold text-Black ${hidden && 'hidden'}`}
+        className={`text-[14px] font-bold text-blue-900 tracking-wider ${
+          hidden && 'hidden'
+        }`}
       >
         {label}
       </label>
@@ -36,7 +38,7 @@ export const TextArea: React.FC<ITextareaProps> = ({
         className={
           className
             ? className
-            : 'p-3 rounded-xl border focus:outline-none focus:border-gray-700 w-full text-xs'
+            : 'p-3 rounded-xl border focus:outline-none focus:border-gray-700 w-full text-[14px]'
         }
         id={name}
         placeholder={placeholder}
@@ -53,7 +55,7 @@ export const TextArea: React.FC<ITextareaProps> = ({
       {isInvalid ? (
         <div
           style={{ color: '#ef4444' }}
-          className='font-bold text-[10px]'
+          className='font-semibold text-[11px] tracking-wider absolute -bottom-4'
         >
           {errors[name]}
         </div>

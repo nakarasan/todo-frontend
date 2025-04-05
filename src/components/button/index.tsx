@@ -11,7 +11,7 @@ export const Button: React.FC<IButtonProps> = ({
   const getVariantStyles = (variant: IButtonProps['variant']) => {
     switch (variant) {
       case 'primary':
-        return 'py-2 px-4 bg-darkBlue text-white';
+        return 'py-2 px-4 hover:bg-blue-900 bg-darkBlue text-white';
 
       case 'secondary':
         return 'py-2 px-4 border-2 border-darkBlue text-darkBlue';
