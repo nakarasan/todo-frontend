@@ -1,10 +1,36 @@
-import { useCallback, useEffect } from 'react';
+import { COLORS } from 'constants/task';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
   storeTaskRequested,
   updateTaskRequested,
   loadTasksRequested,
 } from 'store/task/taskSlice';
+
+const colorMap: Record<string, string> = {};
+
+export function useTask(taskId: number) {
+  const [color, setColor] = useState('');
+
+  useEffect(() => {
+    if (!taskId) return;
+
+    if (!colorMap[taskId]) {
+      const used = Object?.values(colorMap);
+      const available =
+        COLORS.find((c: any) => !used.includes(c)) ||
+        COLORS[Math.floor(Math.random() * COLORS.length)];
+      colorMap[taskId] = available;
+    }
+
+    setColor(colorMap[taskId]);
+  }, [taskId]);
+
+  const releaseColor = () => {
+    delete colorMap[taskId];
+  };
+  return { borderColor: color, releaseColor };
+}
 
 export function useStoreTask() {
   const dispatch = useDispatch();
