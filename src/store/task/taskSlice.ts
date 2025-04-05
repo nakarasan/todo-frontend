@@ -5,7 +5,7 @@ const initialState: any = {
   error: null,
   storeTask: {},
   updateTask: {},
-  tasks: [{ title: 'kara', description: 'test' }],
+  tasks: [],
 };
 
 const taskSlice = createSlice({
@@ -52,7 +52,7 @@ const taskSlice = createSlice({
     loadTasksSuccess(state, action: any) {
       state.loading = false;
       state.error = null;
-      state.offers = action?.payload?.results;
+      state.tasks = action?.payload?.result;
     },
     loadTasksFail(state, action: PayloadAction<{}>) {
       state.loading = false;

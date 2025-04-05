@@ -21,12 +21,12 @@ export function* storeTaskEffect(action: {
   try {
     const { data } = yield call(
       axiosInstance.post,
-      `${apiURL}/task`,
+      `${apiURL}/tasks`,
       action.payload
     );
     if (data?.succeeded) {
       yield put(storeTaskSuccess(data));
-      yield call(loadTasksSuccess, {
+      yield call(loadTasksEffect, {
         payload: {},
         type: '',
       });
@@ -46,18 +46,17 @@ export function* updateTaskEffect(action: {
   try {
     const { data } = yield call(
       axiosInstance.put,
-      `${apiURL}/task`,
-      action.payload
+      `${apiURL}/tasks/${action.payload}`
     );
     if (data?.succeeded) {
       yield put(updateTaskSuccess(data));
-      yield call(loadTasksSuccess, {
+      yield call(loadTasksEffect, {
         payload: {},
         type: '',
       });
-      toast.success('Offer updated successfully');
+      toast.success('Task completed');
     } else {
-      toast.error('Offer update failed! ', data?.errors);
+      toast.error('Task update failed!', data?.errors);
     }
   } catch (error: any) {
     yield put(updateTaskFail(error.message));
@@ -71,7 +70,7 @@ export function* loadTasksEffect(action: {
   try {
     const { data } = yield call(
       axiosInstance.get,
-      `${apiURL}/offers`,
+      `${apiURL}/tasks`,
       action.payload
     );
     if (data?.succeeded) {
